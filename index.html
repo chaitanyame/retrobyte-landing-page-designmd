@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RetroByte — Vintage Computing Museum &amp; Store</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:16px}
+    body{
+      font-family:'Times New Roman',Times,Georgia,serif;
+      font-size:14px;line-height:1.4;color:#000;background:#000
+    }
+    img{display:block;max-width:100%;height:auto}
+
+    /* Page Frame */
+    .page-frame{background:#000;padding:8px;min-height:100vh}
+    @media(max-width:768px){.page-frame{padding:4px}}
+    @media(max-width:480px){.page-frame{padding:2px}}
+    .page-inner{max-width:760px;margin:0 auto;background:#fff}
+
+    /* Top Banner */
+    .top-banner{
+      background:#000;color:#fff;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 16px;gap:8px;flex-wrap:wrap;
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:16px;font-weight:700;line-height:1.2
+    }
+    .banner-left{flex:1;min-width:200px}
+    .banner-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .phone-callout{color:#e91d2a;font-size:16px;font-weight:700;white-space:nowrap;text-decoration:none}
+    .buy-sticker{
+      display:inline-flex;align-items:center;gap:2px;
+      background:#fcc20f;color:#000;
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:12px;font-weight:700;line-height:1;
+      padding:4px 8px;border:1px solid #000;
+      text-decoration:none;text-transform:uppercase;
+      white-space:nowrap
+    }
+    .sticker-a{
+      display:inline-block;background:#6a26a4;color:#fff;
+      padding:0 2px;font-size:10px;line-height:14px;margin:0 1px
+    }
+
+    /* Main Layout */
+    .main-layout{display:flex;gap:0}
+    @media(max-width:480px){.main-layout{flex-direction:column}}
+
+    /* Left Rail */
+    .left-rail{
+      width:28%;min-width:180px;
+      border-right:1px solid #000;
+      padding:16px 12px;display:flex;flex-direction:column;gap:16px
+    }
+    @media(max-width:480px){.left-rail{width:100%;border-right:none;border-bottom:1px solid #000}}
+
+    /* Icon-link grid */
+    .icon-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+    .icon-link{
+      display:flex;flex-direction:column;align-items:center;
+      padding:8px;text-align:center;text-decoration:none;
+      background:#fff;color:#000;gap:4px
+    }
+    .icon-link-icon{
+      width:24px;height:24px;display:flex;
+      align-items:center;justify-content:center;
+      background:#000;color:#fff;
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:11px;font-weight:700;line-height:1
+    }
+    .icon-link-label{
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:12px;font-weight:700;line-height:1;color:#000;
+      text-transform:uppercase
+    }
+
+    /* CTA Block Red */
+    .cta-block-red{
+      background:#e91d2a;color:#fff;
+      border:1px solid #000;padding:16px;
+      font-family:'Times New Roman',Times,Georgia,serif;
+      font-size:14px;line-height:1.4
+    }
+    .cta-block-red a{color:#fff;text-decoration:underline}
+
+    /* Award Seal */
+    .award-seal{
+      width:64px;height:64px;border-radius:50%;
+      background:#e91d2a;color:#fff;display:flex;
+      flex-direction:column;align-items:center;justify-content:center;
+      margin:0 auto;border:2px solid #000;
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:7px;font-weight:700;line-height:1.1;
+      text-align:center;text-transform:uppercase
+    }
+    .award-seal-inner{background:#fff;color:#000;padding:2px 4px;font-size:8px}
+    .award-seal-inner span{color:#e91d2a}
+
+    /* Right Column */
+    .right-column{
+      flex:1;padding:0;
+      display:flex;flex-direction:column
+    }
+
+    /* Section Eyebrows */
+    .section-eyebrow{
+      font-family:'Arial Black',Impact,sans-serif;
+      font-size:36px;font-weight:900;line-height:1;
+      color:#000;padding:24px 16px;letter-spacing:0;
+      text-transform:uppercase
+    }
+    .section-eyebrow-olive{background:#8e8a25}
+    .section-eyebrow-salmon{background:#d77a7a}
+
+    /* Ribbon Card */
+    .ribbon-card{margin:0}
+    .ribbon-card-title{
+      background:#fff;color:#000;
+      border-bottom:1px solid #000;padding:6px 12px;
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:14px;font-weight:700;line-height:1.2;
+      text-transform:uppercase;letter-spacing:0;
+      display:flex;align-items:center;justify-content:space-between
+    }
+    .ribbon-card-body{
+      display:flex;gap:0;
+      border-bottom:1px solid #000;
+      min-height:90px
+    }
+    .ribbon-card-text{
+      flex:1;padding:12px 16px;
+      font-size:14px;line-height:1.4
+    }
+    .ribbon-card-text a{color:#0000ee}
+
+    .ribbon-card-photo{
+      width:25%;min-width:80px;max-width:120px;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;border-left:1px solid #000;
+      background:#000
+    }
+    .ribbon-card-photo img{
+      width:100%;height:100%;object-fit:cover;
+      filter:drop-shadow(2px 2px 0 #000)
+    }
+    @media(max-width:480px){
+      .ribbon-card-body{flex-direction:column}
+      .ribbon-card-photo{width:100%;max-width:none;border-left:none;border-top:1px solid #000;aspect-ratio:4/3}
+    }
+
+    /* Tint variants */
+    .ribbon-sage .ribbon-card-body{background:#b3bd95}
+    .ribbon-salmon .ribbon-card-body{background:#d77a7a}
+    .ribbon-peach .ribbon-card-body{background:#e6915d}
+    .ribbon-lime .ribbon-card-body{background:#c0d4a7}
+    .ribbon-sky .ribbon-card-body{background:#9ab6c8}
+    .ribbon-periwinkle .ribbon-card-body{background:#8c9ae0}
+
+    /* NEW! Burst */
+    .new-burst{
+      display:inline-flex;align-items:center;
+      background:#fcc20f;color:#000;
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:10px;font-weight:700;line-height:1;
+      padding:3px 6px;border:1px solid #000;
+      text-transform:uppercase;
+      transform:rotate(-12deg);margin-left:8px
+    }
+
+    /* Footer */
+    .footer-band{
+      background:#fff;color:#000;
+      border-top:1px solid #000;padding:16px
+    }
+    .icon-label-nav{
+      display:flex;justify-content:center;gap:4px;
+      padding:12px 0;margin-bottom:8px;
+      border-bottom:1px solid #555
+    }
+    .icon-label-nav a{
+      display:flex;flex-direction:column;align-items:center;
+      padding:8px;text-align:center;text-decoration:none;
+      background:#fff;color:#000;gap:4px;min-width:60px
+    }
+    .icon-label-nav .icon{
+      width:24px;height:24px;display:flex;
+      align-items:center;justify-content:center;
+      background:#000;color:#fff;
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:11px;font-weight:700;line-height:1
+    }
+    .icon-label-nav .label{
+      font-family:Helvetica,Arial,sans-serif;
+      font-size:12px;font-weight:700;line-height:1;color:#000;
+      text-transform:uppercase
+    }
+    .footer-copyright{padding:8px 0;font-size:12px}
+    .footer-copyright a{color:#0000ee}
+    .footer-legal{font-size:11px;color:#000;padding:4px 0}
+    .footer-legal a{color:#0000ee}
+  </style>
+</head>
+<body>
+
+<div class="page-frame">
+  <div class="page-inner">
+
+    <!-- Top Banner -->
+    <div class="top-banner">
+      <div class="banner-left">
+        RETROBYTE&nbsp;&mdash; VINTAGE COMPUTING MUSEUM &amp; STORE
+      </div>
+      <div class="banner-right">
+        <a href="#" class="phone-callout">1-800-RETRO-BYTE</a>
+        <a href="#" class="buy-sticker">
+          BUY <span class="sticker-a">a</span> RETRO
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+
+      <!-- Left Rail -->
+      <div class="left-rail">
+
+        <!-- Icon-link grid -->
+        <div class="icon-grid">
+          <a href="#" class="icon-link">
+            <div class="icon-link-icon">F</div>
+            <span class="icon-link-label">MUSEUM</span>
+          </a>
+          <a href="#" class="icon-link">
+            <div class="icon-link-icon">S</div>
+            <span class="icon-link-label">STORE</span>
+          </a>
+          <a href="#" class="icon-link">
+            <div class="icon-link-icon">E</div>
+            <span class="icon-link-label">EVENTS</span>
+          </a>
+          <a href="#" class="icon-link">
+            <div class="icon-link-icon">B</div>
+            <span class="icon-link-label">BLOG</span>
+          </a>
+          <a href="#" class="icon-link">
+            <div class="icon-link-icon">A</div>
+            <span class="icon-link-label">ABOUT</span>
+          </a>
+          <a href="#" class="icon-link">
+            <div class="icon-link-icon">C</div>
+            <span class="icon-link-label">CONTACT</span>
+          </a>
+          <a href="#" class="icon-link">
+            <div class="icon-link-icon">W</div>
+            <span class="icon-link-label">WORLDWIDE</span>
+          </a>
+          <a href="#" class="icon-link">
+            <div class="icon-link-icon">J</div>
+            <span class="icon-link-label">CAREERS</span>
+          </a>
+        </div>
+
+        <!-- CTA Panel -->
+        <div class="cta-block-red">
+          <strong>Visit Our Museum</strong><br>
+          See history come alive.<br>
+          Over 200 vintage systems on display.<br><br>
+          <a href="#">Plan your visit &raquo;</a>
+        </div>
+
+        <!-- Award Seal -->
+        <div class="award-seal">
+          <div class="award-seal-inner">
+            <span>&#9733;</span> PC MAGAZINE <span>&#9733;</span>
+          </div>
+          SERVICE<br>RELIABILITY<br>READERS' CHOICE
+        </div>
+
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+
+        <!-- Section: Vintage Computers -->
+        <div class="section-eyebrow section-eyebrow-olive">
+          VINTAGE COMPUTERS
+        </div>
+
+        <!-- Ribbon Card: Apple Macintosh Plus -->
+        <div class="ribbon-card ribbon-sage">
+          <div class="ribbon-card-title">
+            APPLE MACINTOSH PLUS (1986)
+            <span class="new-burst">NEW!</span>
+          </div>
+          <div class="ribbon-card-body">
+            <div class="ribbon-card-text">
+              The Macintosh Plus was Apple's third Mac model. It shipped with 1 MB of RAM, a 9-inch monochrome display, and the revolutionary Macintosh Toolbox ROM. A defining machine of the desktop publishing era. <a href="#">View in Museum &raquo;</a>
+            </div>
+            <div class="ribbon-card-photo">
+              <img src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?w=400&q=80" alt="Apple Macintosh Plus vintage computer" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Ribbon Card: Commodore 64 -->
+        <div class="ribbon-card ribbon-salmon">
+          <div class="ribbon-card-title">
+            COMMODORE 64 (1982)
+          </div>
+          <div class="ribbon-card-body">
+            <div class="ribbon-card-text">
+              The best-selling single computer model of all time. With 64 KB of RAM and legendary SID sound chip, the C64 brought computing and gaming to millions of homes worldwide. <a href="#">View in Museum &raquo;</a>
+            </div>
+            <div class="ribbon-card-photo">
+              <img src="https://images.unsplash.com/photo-1588508065123-287b0e50b8b8?w=400&q=80" alt="Commodore 64 vintage computer" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Ribbon Card: IBM PC XT -->
+        <div class="ribbon-card ribbon-peach">
+          <div class="ribbon-card-title">
+            IBM PC XT (1983)
+          </div>
+          <div class="ribbon-card-body">
+            <div class="ribbon-card-text">
+              The IBM PC XT introduced the 10 MB hard drive to the personal computer market. It set the standard for business computing with its Intel 8088 processor and ISA expansion slots. <a href="#">View in Museum &raquo;</a>
+            </div>
+            <div class="ribbon-card-photo">
+              <img src="https://images.unsplash.com/photo-1597211689035-5f6a2e3b7b9a?w=400&q=80" alt="IBM PC XT vintage computer" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Gaming Consoles -->
+        <div class="section-eyebrow section-eyebrow-salmon">
+          GAMING CONSOLES
+        </div>
+
+        <!-- Ribbon Card: NES -->
+        <div class="ribbon-card ribbon-lime">
+          <div class="ribbon-card-title">
+            NINTENDO ENTERTAINMENT SYSTEM (1985)
+            <span class="new-burst">NEW!</span>
+          </div>
+          <div class="ribbon-card-body">
+            <div class="ribbon-card-text">
+              The NES revived the video game industry after the 1983 crash. With iconic titles like Super Mario Bros. and The Legend of Zelda, it defined 8-bit gaming for a generation. <a href="#">View in Museum &raquo;</a>
+            </div>
+            <div class="ribbon-card-photo">
+              <img src="https://images.unsplash.com/photo-1600861194942-f883de0dfe96?w=400&q=80" alt="Nintendo Entertainment System retro console" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Ribbon Card: Sega Genesis -->
+        <div class="ribbon-card ribbon-sky">
+          <div class="ribbon-card-title">
+            SEGA GENESIS (1988)
+          </div>
+          <div class="ribbon-card-body">
+            <div class="ribbon-card-text">
+              Sega's 16-bit powerhouse brought arcade-quality graphics home. With its blast-processing Sonic the Hedgehog franchise, the Genesis defined the console wars of the early 90s. <a href="#">View in Museum &raquo;</a>
+            </div>
+            <div class="ribbon-card-photo">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" alt="Sega Genesis retro gaming console" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Ribbon Card: PlayStation -->
+        <div class="ribbon-card ribbon-periwinkle">
+          <div class="ribbon-card-title">
+            SONY PLAYSTATION (1994)
+          </div>
+          <div class="ribbon-card-body">
+            <div class="ribbon-card-text">
+              The first console to ship 100 million units. Sony's CD-based PlayStation revolutionized 3D gaming with titles like Final Fantasy VII, Metal Gear Solid, and Gran Turismo. <a href="#">View in Museum &raquo;</a>
+            </div>
+            <div class="ribbon-card-photo">
+              <img src="https://images.unsplash.com/photo-1600267167060-042a61a0e812?w=400&q=80" alt="Sony PlayStation original console" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /right-column -->
+    </div><!-- /main-layout -->
+
+    <!-- Footer -->
+    <div class="footer-band">
+      <div class="icon-label-nav">
+        <a href="#">
+          <div class="icon">F</div>
+          <span class="label">FIND</span>
+        </a>
+        <a href="#">
+          <div class="icon">H</div>
+          <span class="label">HOME</span>
+        </a>
+        <a href="#">
+          <div class="icon">S</div>
+          <span class="label">ONLINE STORE</span>
+        </a>
+        <a href="#">
+          <div class="icon">W</div>
+          <span class="label">SERVICE &amp; SUPPORT</span>
+        </a>
+      </div>
+
+      <div class="footer-copyright">
+        <a href="#">&copy; 2026 RetroByte. All rights reserved.</a>
+      </div>
+      <div class="footer-legal">
+        This site is best viewed with browser versions 3.0 and higher.<br>
+        Microsoft BackOffice and the BackOffice logo are trademarks of Microsoft Corporation.
+      </div>
+    </div>
+
+  </div><!-- /page-inner -->
+</div><!-- /page-frame -->
+
+</body>
+</html>
